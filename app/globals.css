@@ -159,10 +159,10 @@ textarea { resize: vertical; min-height: 120px; }
     grid-template-columns: 1fr;
   }
 
-  /* Contact grid — stack vertically */
+/* Contact grid — stack vertically */
   .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 48px;
+    grid-template-columns: 1fr !important;
+    gap: 48px !important;
   }
 
   /* Footer top — stack vertically */

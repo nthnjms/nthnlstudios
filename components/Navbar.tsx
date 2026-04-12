@@ -43,7 +43,7 @@ export default function Navbar() {
       </a>
 
       {/* Desktop Links */}
-      <ul style={{ display: 'flex', gap: '36px', listStyle: 'none', margin: 0 }} className="hidden md:flex">
+      <ul style={{ display: 'flex', gap: '36px', listStyle: 'none', margin: 0 }} className="hidden lg:flex">
         {links.map((link) => (
           <li key={link.href}>
             <a
@@ -61,7 +61,7 @@ export default function Navbar() {
       {/* CTA Button */}
       <a
         href="#contact"
-        className="hidden md:inline-block"
+        className="hidden lg:inline-block"
         style={{ fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)', border: '1px solid var(--gold-dim)', padding: '10px 24px', textDecoration: 'none', transition: 'all 0.3s' }}
         onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.color = 'var(--black)' }}
         onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--gold)' }}
