@@ -5,7 +5,48 @@ import CustomCursor from '@/components/ui/CustomCursor'
 
 export const metadata: Metadata = {
   title: 'NTHNL Studios — Creative & Digital Agency',
-  description: 'Building ideas through design, content, and digital experiences.',
+  description: 'NTHNL Studios is a premium creative and digital agency offering branding, content creation, and web design & development.',
+  keywords: [
+    'creative agency',
+    'branding agency',
+    'web design',
+    'content creation',
+    'digital studio',
+    'Philippines creative agency',
+    'NTHNL Studios',
+  ],
+  authors: [{ name: 'NTHNL Studios', url: 'https://nthnlstudios.vercel.app' }],
+  creator: 'NTHNL Studios',
+  metadataBase: new URL('https://nthnlstudios.vercel.app'),
+  openGraph: {
+    type: 'website',
+    url: 'https://nthnlstudios.vercel.app',
+    title: 'NTHNL Studios — Creative & Digital Agency',
+    description: 'Building ideas through design, content, and digital experiences that demand attention.',
+    siteName: 'NTHNL Studios',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'NTHNL Studios — Creative & Digital Agency',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NTHNL Studios — Creative & Digital Agency',
+    description: 'Building ideas through design, content, and digital experiences that demand attention.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 }
 
 export default function RootLayout({
