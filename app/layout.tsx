@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import CustomCursor from '@/components/ui/CustomCursor'
+import LoadingScreen from '@/components/LoadingScreen'
 
 export const metadata: Metadata = {
   title: 'NTHNL Studios — Creative & Digital Agency',
@@ -66,6 +67,7 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning>
+        <LoadingScreen />
         <CustomCursor />
         <Navbar />
         {children}
