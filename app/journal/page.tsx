@@ -1,12 +1,7 @@
+'use client'
+
 import Link from 'next/link'
 import journal from '@/data/journal.json'
-
-const categories = ['All', 'Essay', 'Poetry', 'Short Story', 'Reflection', 'Nonfiction']
-
-export const metadata = {
-  title: 'Journal — NTHNL Studios',
-  description: 'A personal space for essays, poetry, short stories, and creative writing.',
-}
 
 export default function JournalPage() {
   const sorted = [...journal].sort(
@@ -17,7 +12,7 @@ export default function JournalPage() {
     <main style={{ minHeight: '100vh', background: 'var(--black)', paddingTop: '120px' }}>
 
       {/* Header */}
-      <div style={{ padding: '80px 48px 0', borderBottom: '1px solid var(--border)', paddingBottom: '64px' }}>
+      <div style={{ padding: '80px 48px 64px', borderBottom: '1px solid var(--border)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
           <span style={{ width: '32px', height: '1px', background: 'var(--gold)', display: 'inline-block' }} />
           <span style={{ fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--gold)', fontFamily: 'DM Mono' }}>
@@ -34,7 +29,7 @@ export default function JournalPage() {
 
       {/* Works list */}
       <div style={{ padding: '0 48px 120px' }}>
-        {sorted.map((piece, i) => (
+        {sorted.map((piece) => (
           <Link
             key={piece.id}
             href={`/journal/${piece.slug}`}
@@ -52,19 +47,16 @@ export default function JournalPage() {
                 cursor: 'none',
               }}
               onMouseEnter={(e) => {
-                const el = e.currentTarget
-                el.style.paddingLeft = '16px'
-                el.style.borderBottomColor = 'var(--gold-dim)'
+                e.currentTarget.style.paddingLeft = '16px'
+                e.currentTarget.style.borderBottomColor = 'var(--gold-dim)'
               }}
               onMouseLeave={(e) => {
-                const el = e.currentTarget
-                el.style.paddingLeft = '0'
-                el.style.borderBottomColor = 'var(--border)'
+                e.currentTarget.style.paddingLeft = '0'
+                e.currentTarget.style.borderBottomColor = 'var(--border)'
               }}
             >
               <div>
-                {/* Category + date */}
-                <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginBottom: '16px' }}>
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap' }}>
                   <span style={{
                     fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase',
                     color: 'var(--gold)', border: '1px solid var(--gold-dim)',
@@ -79,26 +71,17 @@ export default function JournalPage() {
                     {piece.readTime}
                   </span>
                 </div>
-
-                {/* Title */}
                 <h2 style={{
                   fontFamily: 'Bebas Neue', fontSize: 'clamp(28px, 4vw, 48px)',
                   color: 'var(--white)', marginBottom: '12px', letterSpacing: '0.02em',
                 }}>
                   {piece.title}
                 </h2>
-
-                {/* Excerpt */}
                 <p style={{ fontSize: '15px', color: 'var(--text-dim)', lineHeight: 1.7, maxWidth: '600px' }}>
                   {piece.excerpt}
                 </p>
               </div>
-
-              {/* Arrow */}
-              <div style={{
-                fontFamily: 'DM Mono', fontSize: '24px', color: 'var(--gold)',
-                marginTop: '8px', transition: 'transform 0.3s',
-              }}>
+              <div style={{ fontFamily: 'DM Mono', fontSize: '24px', color: 'var(--gold)', marginTop: '8px' }}>
                 →
               </div>
             </article>
