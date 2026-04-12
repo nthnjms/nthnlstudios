@@ -21,12 +21,24 @@ export default function ContactForm() {
     return () => observer.disconnect()
   }, [])
 
-  const handleSubmit = async (e: React.FormEvent) => {
+const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    await new Promise((r) => setTimeout(r, 1200))
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (res.ok) {
+        setSubmitted(true)
+      } else {
+        alert('Something went wrong. Please try again.')
+      }
+    } catch {
+      alert('Something went wrong. Please try again.')
+    }
     setLoading(false)
-    setSubmitted(true)
   }
 
   return (
