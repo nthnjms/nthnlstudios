@@ -48,7 +48,7 @@ export default function Services() {
       style={{ padding: '120px 48px', background: 'var(--black)' }}
     >
       {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '64px' }}>
+     <div className="services-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '64px' }}>
         <div className="reveal">
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
             <span style={{ width: '32px', height: '1px', background: 'var(--gold)', display: 'inline-block' }} />
@@ -65,7 +65,7 @@ export default function Services() {
         </p>
       </div>
 
-      {/* Cards */}
+      {/* Cards */} 
      <div className="reveal services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'var(--border)' }}>
         {services.map((service) => (
           <div

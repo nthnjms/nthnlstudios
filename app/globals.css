@@ -134,6 +134,9 @@ html, body {
 
 @media (max-width: 1024px) {
 
+  .cursor, .cursor-ring { display: none !important; }
+  body { cursor: auto !important; }
+
   nav {
     padding: 20px 24px !important;
   }
@@ -149,6 +152,17 @@ html, body {
   .about-grid {
     grid-template-columns: 1fr !important;
     gap: 40px !important;
+  }
+
+  .services-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+  }
+
+  .services-header p {
+    text-align: left !important;
+    max-width: 100% !important;
   }
 
   .services-grid {

@@ -45,7 +45,7 @@ export default function Navbar() {
           fontFamily: 'Bebas Neue', fontSize: '22px',
           letterSpacing: '0.15em', color: 'var(--white)', textDecoration: 'none',
         }}>
-          NTHNL<span style={{ color: 'var(--gold)' }}>.</span>
+          NTHNL STUDIOS<span style={{ color: 'var(--gold)' }}>.</span>
         </a>
 
         {/* Desktop links */}
