@@ -56,9 +56,10 @@ export default function Footer() {
               {
                 heading: 'Studio',
                 links: [
-                  { label: 'About', href: '#about' },
-                  { label: 'Services', href: '#services' },
-                  { label: 'Work', href: '#portfolio' },
+                  { label: 'About', href: '/#about' },
+                  { label: 'Services', href: '/#services' },
+                  { label: 'Work', href: '/#portfolio' },
+                  { label: 'Journal', href: '/journal' },
                 ],
               },
               {
