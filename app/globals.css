@@ -125,3 +125,67 @@ select {
 
 select option { background: var(--black); }
 textarea { resize: vertical; min-height: 120px; }
+
+@media (max-width: 768px) {
+
+  /* Navbar */
+  nav {
+    padding: 20px 24px;
+  }
+
+  /* All sections */
+  section {
+    padding: 80px 24px;
+  }
+
+  /* Hero */
+  #hero {
+    padding: 100px 24px 80px;
+  }
+
+  /* About grid — stack vertically */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  /* Services grid — stack vertically */
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Portfolio grid — stack vertically */
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Contact grid — stack vertically */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  /* Footer top — stack vertically */
+  .footer-top {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  /* Footer nav — stack vertically */
+  .footer-nav {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  /* Footer bottom — stack vertically */
+  .footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  /* Hide scroll indicator on mobile */
+  .scroll-indicator {
+    display: none;
+  }
+}

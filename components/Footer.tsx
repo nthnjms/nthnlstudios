@@ -38,7 +38,7 @@ export default function Footer() {
       <footer style={{ background: 'var(--black)', borderTop: '1px solid var(--border)', padding: '60px 48px 40px' }}>
 
         {/* Top row */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '48px' }}>
+       <div className="footer-top" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '48px' }}>
 
           {/* Logo + tagline */}
           <div>
@@ -51,7 +51,7 @@ export default function Footer() {
           </div>
 
           {/* Nav columns */}
-          <div style={{ display: 'flex', gap: '48px' }}>
+          <div className="footer-nav" style={{ display: 'flex', gap: '48px' }}>   
             {[
               {
                 heading: 'Studio',
@@ -99,7 +99,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom row */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '32px', borderTop: '1px solid var(--border)' }}>
+       <div className="footer-bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '32px', borderTop: '1px solid var(--border)' }}>
           <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontFamily: 'DM Mono' }}>
             © 2024 NTHNL Studios. All rights reserved.
           </div>

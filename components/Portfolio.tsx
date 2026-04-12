@@ -119,7 +119,7 @@ export default function Portfolio() {
       </div>
 
       {/* Grid */}
-      <div className="reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2px' }}>
+      <div className="reveal portfolio-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2px' }}>
         {filtered.map((project) => (
           <div
             key={project.id}

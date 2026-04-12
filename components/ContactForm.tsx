@@ -56,7 +56,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       </div>
 
       {/* Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', marginTop: '48px' }}>
+      <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', marginTop: '48px' }}>
 
         {/* Left side info */}
         <div className="reveal">

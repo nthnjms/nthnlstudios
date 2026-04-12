@@ -35,7 +35,7 @@ export default function About() {
       </div>
 
       {/* Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center', marginTop: '48px' }}>
+      <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center', marginTop: '48px' }}>
 
         {/* Big number */}
         <div className="reveal" style={{
