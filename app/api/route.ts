@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+let resend: any
+
+try {
+  const { Resend } = require('resend')
+  resend = new Resend(process.env.RESEND_API_KEY)
+} catch (err) {
+  console.warn('Resend module not found')
+}
 
 export async function POST(req: NextRequest) {
   try {
