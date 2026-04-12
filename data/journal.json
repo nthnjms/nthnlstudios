@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "slug": "on-building-things",
+    "title": "On Building Things",
+    "category": "Essay",
+    "date": "2024-12-01",
+    "excerpt": "There is something quietly radical about deciding to make something from nothing. Not because the world needs more things, but because you do.",
+    "content": "There is something quietly radical about deciding to make something from nothing. Not because the world needs more things, but because you do.\n\nBuilding is an act of faith. You start with an idea that exists only in your head — fragile, undefined, embarrassingly small compared to what you imagine it could become. And then you begin.\n\nThe beginning is always the hardest part. Not because it requires the most skill, but because it requires the most courage. To start is to admit that you care. And caring, in a world that rewards indifference, is its own kind of bravery.\n\nSo build the thing. Write the words. Start the studio. Launch the page. It will not be perfect. It was never supposed to be.",
+    "readTime": "3 min read"
+  },
+  {
+    "id": "2",
+    "slug": "fragments",
+    "title": "Fragments",
+    "category": "Poetry",
+    "date": "2024-12-15",
+    "excerpt": "I collect moments the way some people collect receipts — proof that something happened, that I was there.",
+    "content": "I collect moments\nthe way some people collect receipts —\nproof that something happened,\nthat I was there.\n\nA coffee gone cold.\nThe particular blue of 5am.\nYour laugh caught mid-sentence,\nsharp and unguarded.\n\nI keep them in no particular order.\nThey do not need to make sense.\nThey only need to be mine.",
+    "readTime": "1 min read"
+  }
+]
