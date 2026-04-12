@@ -27,6 +27,9 @@ const empty: Piece = {
 }
 
 export default function AdminPage() {
+  const [unlocked, setUnlocked] = useState(false)
+  const [password, setPassword] = useState('')
+  const [passwordError, setPasswordError] = useState('')
   const [pieces, setPieces] = useState<Piece[]>([])
   const [form, setForm] = useState<Piece>(empty)
   const [saving, setSaving] = useState(false)
@@ -34,32 +37,49 @@ export default function AdminPage() {
   const [view, setView] = useState<'list' | 'new'>('list')
 
   useEffect(() => {
+    const saved = sessionStorage.getItem('nthnl_admin')
+    if (saved === 'true') setUnlocked(true)
+  }, [])
+
+  useEffect(() => {
+    if (!unlocked) return
     fetch('/api/journal')
       .then((r) => r.json())
       .then((data) => setPieces(data))
-  }, [])
+  }, [unlocked])
+
+  const handleLogin = async () => {
+    const res = await fetch('/api/admin-auth', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password }),
+    })
+    if (res.ok) {
+      sessionStorage.setItem('nthnl_admin', 'true')
+      setUnlocked(true)
+      setPasswordError('')
+    } else {
+      setPasswordError('Incorrect password.')
+    }
+  }
 
   const handleSave = async () => {
     if (!form.title || !form.content || !form.excerpt) {
       setMessage('Please fill in title, excerpt, and content.')
       return
     }
-
     setSaving(true)
     const newPiece: Piece = {
       ...form,
       id: Date.now().toString(),
       slug: form.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
     }
-
     const updated = [newPiece, ...pieces]
-
     const res = await fetch('/api/journal', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updated),
     })
-
     if (res.ok) {
       setPieces(updated)
       setForm(empty)
@@ -83,8 +103,65 @@ export default function AdminPage() {
     setMessage('Deleted.')
   }
 
+  // Password gate
+  if (!unlocked) {
+    return (
+      <main style={{
+        minHeight: '100vh', background: 'var(--black)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+      }}>
+        <div style={{ width: '100%', maxWidth: '400px', padding: '48px' }}>
+
+          {/* Logo */}
+          <div style={{ fontFamily: 'Bebas Neue', fontSize: '32px', color: 'var(--white)', marginBottom: '8px' }}>
+            NTHNL<span style={{ color: 'var(--gold)' }}>.</span>
+          </div>
+          <div style={{ fontFamily: 'DM Mono', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '48px' }}>
+            Admin Access
+          </div>
+
+          {/* Password field */}
+          <label style={{ display: 'block', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', fontFamily: 'DM Mono', marginBottom: '10px' }}>
+            Password
+          </label>
+          <input
+            type="password"
+            placeholder="Enter password..."
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={(e) => { if (e.key === 'Enter') handleLogin() }}
+            style={{ marginBottom: '16px' }}
+          />
+
+          {/* Error */}
+          {passwordError && (
+            <div style={{ fontSize: '12px', color: '#e24b4a', fontFamily: 'DM Mono', marginBottom: '16px' }}>
+              {passwordError}
+            </div>
+          )}
+
+          {/* Login button */}
+          <button
+            onClick={handleLogin}
+            style={{
+              width: '100%', background: 'var(--gold)', color: 'var(--black)',
+              border: 'none', fontSize: '11px', letterSpacing: '0.2em',
+              textTransform: 'uppercase', fontWeight: 500, padding: '16px',
+              cursor: 'none', fontFamily: 'DM Sans', transition: 'all 0.3s',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--gold-light)')}
+            onMouseLeave={(e) => (e.currentTarget.style.background = 'var(--gold)')}
+          >
+            Enter →
+          </button>
+        </div>
+      </main>
+    )
+  }
+
+  // Admin dashboard
   return (
-    <main style={{ minHeight: '100vh', background: 'var(--black)', paddingTop: '100px', padding: '100px 48px 80px' }}>
+    <main style={{ minHeight: '100vh', background: 'var(--black)', padding: '100px 48px 80px' }}>
 
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '48px', borderBottom: '1px solid var(--border)', paddingBottom: '32px' }}>
@@ -121,6 +198,17 @@ export default function AdminPage() {
           >
             + New Piece
           </button>
+          <button
+            onClick={() => { sessionStorage.removeItem('nthnl_admin'); setUnlocked(false) }}
+            style={{
+              fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase',
+              padding: '12px 24px', border: '1px solid var(--border)',
+              background: 'transparent', color: 'var(--text-muted)',
+              cursor: 'none', fontFamily: 'DM Sans', transition: 'all 0.3s',
+            }}
+          >
+            Log Out
+          </button>
         </div>
       </div>
 
@@ -135,7 +223,9 @@ export default function AdminPage() {
       {view === 'list' && (
         <div>
           {pieces.length === 0 && (
-            <p style={{ color: 'var(--text-muted)', fontFamily: 'DM Mono', fontSize: '13px' }}>No pieces yet. Add your first one.</p>
+            <p style={{ color: 'var(--text-muted)', fontFamily: 'DM Mono', fontSize: '13px' }}>
+              No pieces yet. Click "+ New Piece" to add your first one.
+            </p>
           )}
           {pieces.map((piece) => (
             <div key={piece.id} style={{
@@ -183,94 +273,42 @@ export default function AdminPage() {
       {/* New piece form */}
       {view === 'new' && (
         <div style={{ maxWidth: '720px' }}>
-
-          {/* Title */}
           <div style={{ marginBottom: '24px' }}>
-            <label style={{ display: 'block', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', fontFamily: 'DM Mono', marginBottom: '10px' }}>
-              Title
-            </label>
-            <input
-              type="text"
-              placeholder="Your piece title..."
-              value={form.title}
-              onChange={(e) => setForm({ ...form, title: e.target.value })}
-            />
+            <label style={{ display: 'block', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', fontFamily: 'DM Mono', marginBottom: '10px' }}>Title</label>
+            <input type="text" placeholder="Your piece title..." value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
           </div>
-
-          {/* Category + Date row */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '24px' }}>
             <div>
-              <label style={{ display: 'block', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', fontFamily: 'DM Mono', marginBottom: '10px' }}>
-                Category
-              </label>
-              <select
-                value={form.category}
-                onChange={(e) => setForm({ ...form, category: e.target.value })}
-              >
+              <label style={{ display: 'block', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', fontFamily: 'DM Mono', marginBottom: '10px' }}>Category</label>
+              <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })}>
                 {categories.map((c) => <option key={c}>{c}</option>)}
               </select>
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', fontFamily: 'DM Mono', marginBottom: '10px' }}>
-                Date
-              </label>
-              <input
-                type="date"
-                value={form.date}
-                onChange={(e) => setForm({ ...form, date: e.target.value })}
-              />
+              <label style={{ display: 'block', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', fontFamily: 'DM Mono', marginBottom: '10px' }}>Date</label>
+              <input type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} />
             </div>
           </div>
-
-          {/* Read time */}
           <div style={{ marginBottom: '24px' }}>
-            <label style={{ display: 'block', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', fontFamily: 'DM Mono', marginBottom: '10px' }}>
-              Read Time
-            </label>
-            <input
-              type="text"
-              placeholder="e.g. 3 min read"
-              value={form.readTime}
-              onChange={(e) => setForm({ ...form, readTime: e.target.value })}
-            />
+            <label style={{ display: 'block', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', fontFamily: 'DM Mono', marginBottom: '10px' }}>Read Time</label>
+            <input type="text" placeholder="e.g. 3 min read" value={form.readTime} onChange={(e) => setForm({ ...form, readTime: e.target.value })} />
           </div>
-
-          {/* Excerpt */}
           <div style={{ marginBottom: '24px' }}>
-            <label style={{ display: 'block', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', fontFamily: 'DM Mono', marginBottom: '10px' }}>
-              Excerpt (shown on listing page)
-            </label>
-            <textarea
-              placeholder="A short teaser — 1 to 2 sentences..."
-              value={form.excerpt}
-              onChange={(e) => setForm({ ...form, excerpt: e.target.value })}
-              style={{ minHeight: '80px' }}
-            />
+            <label style={{ display: 'block', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', fontFamily: 'DM Mono', marginBottom: '10px' }}>Excerpt</label>
+            <textarea placeholder="A short teaser — 1 to 2 sentences..." value={form.excerpt} onChange={(e) => setForm({ ...form, excerpt: e.target.value })} style={{ minHeight: '80px' }} />
           </div>
-
-          {/* Content */}
           <div style={{ marginBottom: '32px' }}>
-            <label style={{ display: 'block', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', fontFamily: 'DM Mono', marginBottom: '10px' }}>
-              Full Content (use blank lines to separate paragraphs)
-            </label>
-            <textarea
-              placeholder="Write your full piece here..."
-              value={form.content}
-              onChange={(e) => setForm({ ...form, content: e.target.value })}
-              style={{ minHeight: '320px' }}
-            />
+            <label style={{ display: 'block', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', fontFamily: 'DM Mono', marginBottom: '10px' }}>Full Content (use blank lines between paragraphs)</label>
+            <textarea placeholder="Write your full piece here..." value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} style={{ minHeight: '320px' }} />
           </div>
-
-          {/* Save */}
           <button
             onClick={handleSave}
             disabled={saving}
             style={{
               width: '100%', background: saving ? 'var(--gold-dim)' : 'var(--gold)',
-              color: 'var(--black)', border: 'none',
-              fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase',
-              fontWeight: 500, padding: '18px', cursor: 'none',
-              transition: 'all 0.3s', fontFamily: 'DM Sans',
+              color: 'var(--black)', border: 'none', fontSize: '11px',
+              letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 500,
+              padding: '18px', cursor: 'none', transition: 'all 0.3s', fontFamily: 'DM Sans',
             }}
           >
             {saving ? 'Saving...' : 'Publish Piece →'}
