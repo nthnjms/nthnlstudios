@@ -1,9 +1,19 @@
+import Hero from '@/components/Hero'
+import About from '@/components/About'
+import Services from '@/components/Services'
+import Portfolio from '@/components/Portfolio'
+import ContactForm from '@/components/ContactForm'
+import Footer from '@/components/Footer'
+
 export default function Home() {
   return (
     <main>
-      <p style={{ color: 'white', padding: '40px', fontFamily: 'DM Sans' }}>
-        NTHNL Studios — site loading...
-      </p>
+      <Hero />
+      <About />
+      <Services />
+      <Portfolio />
+      <ContactForm />
+      <Footer />
     </main>
   )
 }
