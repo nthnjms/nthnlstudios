@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 
     await resend.emails.send({
       from: 'NTHNL Studios <onboarding@resend.dev>',
-      to: process.env.CONTACT_EMAIL || 'hello@nthnlstudios.com',
+      to: process.env.CONTACT_EMAIL || 'nathanjamestonacao@gmail.com',
       subject: `New Project Brief from ${name}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background: #0f0f0f; color: #f5f5f0; padding: 40px; border: 1px solid rgba(184,149,42,0.3);">
