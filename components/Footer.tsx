@@ -43,7 +43,7 @@ export default function Footer() {
           {/* Logo + tagline */}
           <div>
             <div style={{ fontFamily: 'Bebas Neue', fontSize: '32px', letterSpacing: '0.1em', color: 'var(--white)' }}>
-              NTHNL<span style={{ color: 'var(--gold)' }}>.</span>
+              NTHNL Studios<span style={{ color: 'var(--gold)' }}>.</span>
             </div>
             <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '6px', letterSpacing: '0.05em' }}>
               Creative &amp; Digital Studio
@@ -104,7 +104,7 @@ export default function Footer() {
             © 2024 NTHNL Studios. All rights reserved.
           </div>
           <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontFamily: 'DM Mono' }}>
-            hello@nthnlstudios.com
+            nthnlstudios@gmail.com
           </div>
         </div>
 

@@ -56,7 +56,7 @@ export default function ContactForm() {
           </p>
 
           <div style={{ fontFamily: 'DM Mono', fontSize: '13px', color: 'var(--gold)', borderBottom: '1px solid var(--gold-dim)', paddingBottom: '8px', display: 'inline-block' }}>
-            hello@nthnlstudios.com
+            nthnlstudios@gmail.com
           </div>
 
           <div style={{ marginTop: '48px', paddingTop: '40px', borderTop: '1px solid var(--border)' }}>
