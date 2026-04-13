@@ -173,6 +173,17 @@ html, body {
     grid-template-columns: 1fr !important;
   }
 
+  .writing-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+  }
+
+  .writing-header p {
+    text-align: left !important;
+    max-width: 100% !important;
+  }
+  
   .writing-grid {
     grid-template-columns: 1fr !important;
   }

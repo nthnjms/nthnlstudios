@@ -22,7 +22,7 @@ export default function WritingShowcase() {
       }}
     >
       {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '64px' }}>
+      <div className="writing-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '64px' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
             <span style={{ width: '32px', height: '1px', background: 'var(--gold)', display: 'inline-block' }} />
@@ -163,7 +163,7 @@ export default function WritingShowcase() {
               </div>
 
               <div>
-                <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '16px' }}>
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginBottom: '24px' }}>
                   <span style={{
                     fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase',
                     color: 'var(--gold)', border: '1px solid var(--gold-dim)',
@@ -186,7 +186,7 @@ export default function WritingShowcase() {
                   {piece.excerpt}
                 </p>
               </div>
-
+              
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '24px' }}>
                 <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontFamily: 'DM Mono' }}>
                   {new Date(piece.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
