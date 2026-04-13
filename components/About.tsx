@@ -48,7 +48,7 @@ export default function About() {
         {/* Text side */}
         <div className="reveal">
           <h2 style={{ fontFamily: 'Bebas Neue', fontSize: 'clamp(40px, 5vw, 64px)', lineHeight: 1, color: 'var(--white)', marginBottom: '24px' }}>
-            A Studio Built for What&apos;s Next
+            A Studio Built for the Next Era of Ideas
           </h2>
 
           <p style={{ fontSize: '16px', color: 'var(--text-dim)', lineHeight: 1.8, marginBottom: '16px' }}>
