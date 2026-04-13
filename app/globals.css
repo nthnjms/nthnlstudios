@@ -173,6 +173,10 @@ html, body {
     grid-template-columns: 1fr !important;
   }
 
+  .writing-grid {
+    grid-template-columns: 1fr !important;
+  }
+
   .contact-grid {
     grid-template-columns: 1fr !important;
     gap: 48px !important;

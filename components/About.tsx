@@ -40,7 +40,7 @@ export default function About() {
         {/* Big number */}
         <div className="reveal" style={{
           fontFamily: 'Bebas Neue', fontSize: '300px', lineHeight: 1,
-          color: 'transparent', WebkitTextStroke: '1px rgba(184,149,42,0.15)',
+          color: 'transparent', WebkitTextStroke: '3px rgba(184,149,42,0.15)',
         }}>
           01
         </div>
