@@ -173,7 +173,7 @@ html, body {
     grid-template-columns: 1fr !important;
   }
 
-  .writing-header {
+.writing-header {
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 16px !important;
