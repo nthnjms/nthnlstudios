@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import journal from '@/data/journal.json'
 
-export default function JournalPage() {
+export default function WritingPage() {
   const sorted = [...journal].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   )
@@ -16,23 +16,23 @@ export default function JournalPage() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
           <span style={{ width: '32px', height: '1px', background: 'var(--gold)', display: 'inline-block' }} />
           <span style={{ fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--gold)', fontFamily: 'DM Mono' }}>
-            Personal Space
+            Narratives by NTHNL
           </span>
         </div>
         <h1 style={{ fontFamily: 'Bebas Neue', fontSize: 'clamp(60px, 8vw, 100px)', lineHeight: 0.9, color: 'var(--white)', marginBottom: '24px' }}>
-          Journal
+          The Writing
         </h1>
         <p style={{ fontSize: '16px', color: 'var(--text-dim)', maxWidth: '480px', lineHeight: 1.7 }}>
-          A personal space for essays, poetry, short stories, and everything in between. Unfiltered and ongoing.
+          Brand essays, editorial copy, creative writing, and campaign narratives — live examples of what Narratives by NTHNL produces.
         </p>
       </div>
 
-      {/* Works list */}
+      {/* List */}
       <div style={{ padding: '0 48px 120px' }}>
         {sorted.map((piece) => (
           <Link
             key={piece.id}
-            href={`/journal/${piece.slug}`}
+            href={`/writing/${piece.slug}`}
             style={{ textDecoration: 'none', display: 'block' }}
           >
             <article
@@ -89,8 +89,8 @@ export default function JournalPage() {
         ))}
 
         {sorted.length === 0 && (
-          <div style={{ padding: '80px 0', textAlign: 'center', color: 'var(--text-muted)', fontFamily: 'DM Mono', fontSize: '13px', letterSpacing: '0.1em' }}>
-            No entries yet.
+          <div style={{ padding: '80px 0', textAlign: 'center', color: 'var(--text-muted)', fontFamily: 'DM Mono', fontSize: '13px' }}>
+            No pieces yet.
           </div>
         )}
       </div>

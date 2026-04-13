@@ -1,31 +1,22 @@
+'use client'
+
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { use } from 'react'
 import journal from '@/data/journal.json'
 
-export async function generateStaticParams() {
-  return journal.map((piece) => ({ slug: piece.slug }))
-}
-
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const piece = journal.find((p) => p.slug === params.slug)
-  if (!piece) return {}
-  return {
-    title: `${piece.title} — NTHNL Journal`,
-    description: piece.excerpt,
-  }
-}
-
-export default function PiecePage({ params }: { params: { slug: string } }) {
-  const piece = journal.find((p) => p.slug === params.slug)
+export default function PiecePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params)
+  const piece = journal.find((p) => p.slug === slug)
   if (!piece) notFound()
 
   return (
     <main style={{ minHeight: '100vh', background: 'var(--black)', paddingTop: '120px' }}>
 
-      {/* Back link */}
+      {/* Back */}
       <div style={{ padding: '40px 48px 0' }}>
         <Link
-          href="/journal"
+          href="/writing"
           style={{
             fontFamily: 'DM Mono', fontSize: '11px', letterSpacing: '0.15em',
             textTransform: 'uppercase', color: 'var(--text-muted)',
@@ -35,7 +26,7 @@ export default function PiecePage({ params }: { params: { slug: string } }) {
           onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--gold)')}
           onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
         >
-          ← Back to Journal
+          ← Back to Writing
         </Link>
       </div>
 
@@ -63,10 +54,8 @@ export default function PiecePage({ params }: { params: { slug: string } }) {
         <h1 style={{
           fontFamily: 'Bebas Neue',
           fontSize: 'clamp(48px, 7vw, 80px)',
-          lineHeight: 0.95,
-          color: 'var(--white)',
-          marginBottom: '48px',
-          letterSpacing: '0.02em',
+          lineHeight: 0.95, color: 'var(--white)',
+          marginBottom: '48px', letterSpacing: '0.02em',
         }}>
           {piece.title}
         </h1>
@@ -76,22 +65,18 @@ export default function PiecePage({ params }: { params: { slug: string } }) {
 
         {/* Content */}
         <div style={{ fontSize: '17px', color: 'var(--text-dim)', lineHeight: 1.9, fontWeight: 300 }}>
-          {piece.content.split('\n').map((line, i) => (
-            line === '' ? (
-              <br key={i} />
-            ) : (
-              <p key={i} style={{ marginBottom: '8px' }}>{line}</p>
-            )
-          ))}
+          {piece.content.split('\n').map((line, i) =>
+            line === '' ? <br key={i} /> : <p key={i} style={{ marginBottom: '8px' }}>{line}</p>
+          )}
         </div>
 
         {/* Footer */}
         <div style={{ marginTop: '80px', paddingTop: '40px', borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span style={{ fontFamily: 'DM Mono', fontSize: '11px', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
-            NTHNL Studios — Journal
+            Narratives by NTHNL Studios
           </span>
           <Link
-            href="/journal"
+            href="/writing"
             style={{
               fontFamily: 'DM Mono', fontSize: '11px', letterSpacing: '0.15em',
               textTransform: 'uppercase', color: 'var(--gold)', textDecoration: 'none',

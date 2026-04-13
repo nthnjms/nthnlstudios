@@ -43,7 +43,7 @@ export default function AdminPage() {
 
   useEffect(() => {
     if (!unlocked) return
-    fetch('/api/journal')
+    fetch('/api/writing')
       .then((r) => r.json())
       .then((data) => setPieces(data))
   }, [unlocked])
@@ -75,7 +75,7 @@ export default function AdminPage() {
       slug: form.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
     }
     const updated = [newPiece, ...pieces]
-    const res = await fetch('/api/journal', {
+    const res = await fetch('/api/writing', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updated),
@@ -94,7 +94,7 @@ export default function AdminPage() {
   const handleDelete = async (id: string) => {
     if (!confirm('Delete this piece?')) return
     const updated = pieces.filter((p) => p.id !== id)
-    await fetch('/api/journal', {
+    await fetch('/api/writing', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updated),

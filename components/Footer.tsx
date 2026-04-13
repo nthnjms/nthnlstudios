@@ -59,7 +59,7 @@ export default function Footer() {
                   { label: 'About', href: '/#about' },
                   { label: 'Services', href: '/#services' },
                   { label: 'Work', href: '/#portfolio' },
-                  { label: 'Journal', href: '/journal' },
+                  { label: 'Writing', href: '/writing' },
                 ],
               },
               {

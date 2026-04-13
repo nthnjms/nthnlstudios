@@ -27,6 +27,14 @@ const services = [
     href: '/services/web',
     deliverables: ['UX Research & Wireframing', 'Visual Design', 'Next.js Development', 'SEO & Performance'],
   },
+  {
+    id: 'narratives',
+    num: '04',
+    title: 'Narratives',
+    description: 'Brand storytelling, editorial copy, campaign narratives, and creative writing. Words that carry weight and move people to act.',
+    href: '/services/narratives',
+    deliverables: ['Brand Copywriting', 'Editorial Direction', 'Campaign Narratives', 'Creative Writing'],
+  },
 ]
 
 export default function Services() {
