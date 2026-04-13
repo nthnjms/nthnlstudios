@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Navbar from '@/components/Navbar'
+import { Suspense } from 'react'
 import CustomCursor from '@/components/ui/CustomCursor'
 import LoadingScreen from '@/components/LoadingScreen'
 
@@ -70,7 +71,9 @@ export default function RootLayout({
         <LoadingScreen />
         <CustomCursor />
         <Navbar />
-        {children}
+        <Suspense fallback={null}>
+          {children}
+        </Suspense>
       </body>
     </html>
   )
