@@ -77,7 +77,7 @@ export default function Services() {
       </div>
 
       {/* Cards */} 
-     <div className="reveal services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'var(--border)' }}>
+      <div className="reveal services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1px', background: 'var(--border)' }}>
         {services.map((service) => (
           <div
             key={service.id}
