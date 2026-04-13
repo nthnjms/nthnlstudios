@@ -39,7 +39,7 @@ export default function About() {
 
         {/* Big number */}
         <div className="reveal" style={{
-          fontFamily: 'Bebas Neue', fontSize: '180px', lineHeight: 1,
+          fontFamily: 'Bebas Neue', fontSize: '300px', lineHeight: 1,
           color: 'transparent', WebkitTextStroke: '1px rgba(184,149,42,0.15)',
         }}>
           01
@@ -65,7 +65,7 @@ export default function About() {
             marginTop: '48px', paddingTop: '40px', borderTop: '1px solid var(--border)',
           }}>
             {[
-              { number: '3+', label: 'Core Services' },
+              { number: '4+', label: 'Core Services' },
               { number: '100%', label: 'Client Focused' },
               { number: '∞', label: 'Scalable Capacity' },
               { number: '1', label: 'Unified Vision' },
