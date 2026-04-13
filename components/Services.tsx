@@ -8,6 +8,7 @@ const services = [
     num: '01',
     title: 'Branding & Identity',
     description: 'Logos, visual systems, brand voice, and positioning strategy. We build identities that hold up across every touchpoint — from print to pixel.',
+    href: '/services/branding',
     deliverables: ['Logo & Wordmark', 'Visual Identity Guidelines', 'Brand Voice & Tone', 'Typography & Color System'],
   },
   {
@@ -15,6 +16,7 @@ const services = [
     num: '02',
     title: 'Content Creation',
     description: 'Photography direction, copywriting, social content, and editorial design. Stories that connect and convert across every platform.',
+    href: '/services/content',
     deliverables: ['Content Strategy', 'Copywriting & Messaging', 'Social Content Production', 'Editorial Design'],
   },
   {
@@ -22,6 +24,7 @@ const services = [
     num: '03',
     title: 'Web Design & Dev',
     description: 'High-performance websites and web apps. From landing pages to full-scale digital platforms — designed with intent, built to scale.',
+    href: '/services/web',
     deliverables: ['UX Research & Wireframing', 'Visual Design', 'Next.js Development', 'SEO & Performance'],
   },
 ]
@@ -109,12 +112,27 @@ export default function Services() {
             )}
 
             {/* Learn more */}
-            <div style={{
-              marginTop: '24px', fontSize: '10px', letterSpacing: '0.2em',
-              textTransform: 'uppercase', color: 'var(--gold)', fontFamily: 'DM Mono',
-              display: 'flex', alignItems: 'center', gap: '8px',
-            }}>
-              {active === service.id ? 'Close' : 'Learn More'} <span>{active === service.id ? '↑' : '→'}</span>
+            <div style={{ marginTop: '24px', display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <div style={{
+                fontSize: '10px', letterSpacing: '0.2em',
+                textTransform: 'uppercase', color: 'var(--gold)', fontFamily: 'DM Mono',
+                display: 'flex', alignItems: 'center', gap: '8px', cursor: 'none',
+              }}>
+                {active === service.id ? 'Close ↑' : 'Quick View →'}
+              </div>
+              <a
+                href={service.href}
+                onClick={(e) => e.stopPropagation()}
+                style={{
+                  fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase',
+                  color: 'var(--text-muted)', fontFamily: 'DM Mono', textDecoration: 'none',
+                  transition: 'color 0.3s',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--gold)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
+              >
+                Full Details ↗
+              </a>
             </div>
           </div>
         ))}
