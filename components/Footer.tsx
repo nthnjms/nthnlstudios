@@ -73,8 +73,8 @@ export default function Footer() {
               {
                 heading: 'Connect',
                 links: [
-                  { label: 'Instagram', href: '#' },
-                  { label: 'LinkedIn', href: '#' },
+                  { label: 'Instagram', href: 'https://www.instagram.com/nthnieljmes/' },
+                  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/nthnlstudios' },
                   { label: 'Contact', href: '#contact' },
                 ],
               },
@@ -102,7 +102,7 @@ export default function Footer() {
         {/* Bottom row */}
        <div className="footer-bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '32px', borderTop: '1px solid var(--border)' }}>
           <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontFamily: 'DM Mono' }}>
-            © 2024 NTHNL Studios. All rights reserved.
+            © 2021 NTHNL Studios. All rights reserved.
           </div>
           <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontFamily: 'DM Mono' }}>
             nthnlstudios@gmail.com
